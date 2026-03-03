@@ -1,24 +1,42 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import { Stack } from "expo-router";
+import { Dimensions, Text, View } from "react-native";
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
-
+import { Ionicons } from '@react-native-vector-icons/ionicons';
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  const widthL = (Dimensions.get('window').width )* 0.8; 
+  return <Stack
+    screenOptions={{
+      headerStyle: { backgroundColor: '#e17100',  },
 
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
-  );
+      headerTitle: () => (
+
+        <View>
+        <View style={{ display: 'flex', flexDirection: 'row' }}>
+
+
+          <View style={{ display: 'flex', flexDirection: 'row' }} >
+            <View style={{ backgroundColor: '#ff8904', justifyContent: 'center', borderRadius: 5 }}>
+              <Text style={{ fontSize: 20, color: '#fff', fontWeight: 'bold', padding: 6 }}>T</Text>
+            </View>
+
+            <Text style={{ fontSize: 20, color: '#fff', fontWeight: 'bold', padding: 6 }}>Traducteur</Text>
+          </View>
+          <View style={{ backgroundColor: '#ff8904', justifyContent: 'center', borderRadius: 100, position: 'absolute', right: 0 }}>
+            <Ionicons name='home' size={19} color={'#fff'} style={{ padding: 10 }} />
+          </View>
+
+
+        </View>
+
+
+<View style={{backgroundColor:'#fff',borderRadius:9, padding:12, paddingBottom:12, width:widthL}}>
+  <Text>h</Text>
+
+</View>
+        </View>
+      ),
+      headerTintColor: '#e17100',
+      headerBackVisible: true
+    }}
+  />;
 }
