@@ -1,9 +1,5 @@
-import { SafeAreaView } from "react-native-safe-area-context";
-import Header from "./hooks/header";
+import { Redirect } from "expo-router";
+
 export default function Index() {
-  return (
-    <SafeAreaView>
-      <Header />
-    </SafeAreaView>
-  );
+  return <Redirect href="/(tabs)/home" />;
 }

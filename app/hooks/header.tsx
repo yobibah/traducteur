@@ -1,129 +1,62 @@
 import { FontAwesome6 } from "@expo/vector-icons";
 import { Ionicons } from "@react-native-vector-icons/ionicons";
 import { Dimensions, Pressable, Text, View } from "react-native";
+import "../../global.css";
 
 export default function Header() {
   const width = Dimensions.get("screen").width * 0.9;
+
   return (
-    <View
-      style={{
-        backgroundColor: "#e17100",
-        height: 150,
-        borderBottomEndRadius: 12,
-        borderBottomLeftRadius: 12,
-      }}
-    >
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-        }}
-      >
-        <View style={{ display: "flex", flexDirection: "row", padding: 10 }}>
-          <View
-            style={{
-              backgroundColor: "#ff8904",
-              justifyContent: "center",
-              borderRadius: 5,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 20,
-                color: "#fff",
-                fontWeight: "bold",
-                padding: 6,
-              }}
-            >
-              T
-            </Text>
+    <View className="bg-[#e17100] h-[150px] rounded-b-xl">
+      <View className="flex-row">
+        <View className="flex-row p-2.5">
+          <View className="bg-[#ff8904] justify-center rounded-md">
+            <Text className="text-white font-bold text-xl p-1.5">T</Text>
           </View>
 
-          <Text
-            style={{
-              fontSize: 20,
-              color: "#fff",
-              fontWeight: "bold",
-              padding: 6,
-            }}
-          >
-            Traducteur
-          </Text>
+          <Text className="text-white font-bold text-xl p-1.5">Traducteur</Text>
         </View>
+
         <Pressable
-          style={{
-            backgroundColor: "#ff8904",
-            justifyContent: "center",
-            borderRadius: 100,
-            position: "absolute",
-            right: 5,
-            top: 8,
-          }}
+          className="bg-[#ff8904] justify-center rounded-full absolute right-1 top-2"
           onPress={() => console.log("homme presser")}
         >
           <Ionicons
             name="settings-outline"
             size={19}
-            color={"#fff"}
+            color="#fff"
             style={{ padding: 10 }}
           />
         </Pressable>
       </View>
 
       <View
-        style={{
-          backgroundColor: "#fff",
-          borderRadius: 9,
-          padding: 12,
-          paddingBottom: 12,
-          width,
-          alignSelf: "center",
-          flexDirection: "row",
-          justifyContent: "space-between",
-        }}
+        style={{ width }}
+        className="bg-white rounded-lg p-3 self-center flex-row justify-between"
       >
-        <Pressable
-          style={{
-            alignSelf: "center",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            columnGap: 5,
-          }}
-        >
+        <Pressable className="self-center flex-row items-center gap-1">
           <Text>Anglais</Text>
           <Ionicons name="chevron-up-outline" />
         </Pressable>
 
-        <View
-          style={{
-            backgroundColor: "#ffb86a",
-            borderRadius: 150,
-            height: 40,
-            width: 40,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+        <Pressable
+          onPress={() => console.log("echnager")}
+          className="shadow-md bg-orange-100 rounded-full h-10 w-10 justify-center items-center "
         >
           <FontAwesome6
             name="arrow-right-arrow-left"
             size={20}
             color="#e17100"
           />
-        </View>
-        <Pressable
-          style={{
-            alignSelf: "center",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            columnGap: 5,
-            backgroundColor: "#ff8904",
-            borderRadius: 8,
-          }}
-        >
-          <Text style={{ padding: 6, color: "#fff" }}>Francais</Text>
-          <Ionicons name="chevron-up-outline" />
+        </Pressable>
+
+        <Pressable className="self-center flex-row items-center gap-1 bg-[#ff8904] rounded-lg">
+          <Text className="text-white p-1.5">Francais</Text>
+          <Ionicons
+            name="chevron-up-outline"
+            color="#fff"
+            style={{ paddingRight: 3 }}
+          />
         </Pressable>
       </View>
     </View>
