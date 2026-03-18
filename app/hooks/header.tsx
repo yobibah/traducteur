@@ -1,5 +1,5 @@
-import { FontAwesome6 } from "@expo/vector-icons";
-import { Ionicons } from "@react-native-vector-icons/ionicons";
+import { Feather, FontAwesome6, Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
 import { useState } from "react";
 import {
   Dimensions,
@@ -10,19 +10,20 @@ import {
   View,
 } from "react-native";
 import "../../global.css";
-
 import { langues } from "../data/langue";
 
-export default function Header() {
+export default function Header({
+  fromLang,
+  toLang,
+  setFromLang,
+  setToLang,
+}: any) {
   const width = Dimensions.get("screen").width * 0.9;
-
-  const [fromLang, setFromLang] = useState("Anglais");
-  const [toLang, setToLang] = useState("Français");
 
   const [visible, setVisible] = useState(false);
   const [target, setTarget] = useState("from");
 
-  const selectLang = (lang) => {
+  const selectLang = (lang: string) => {
     if (target === "from") {
       setFromLang(lang);
     } else {
@@ -44,14 +45,9 @@ export default function Header() {
 
         <Pressable
           className="bg-[#ff8904] justify-center rounded-full absolute right-1 top-2"
-          onPress={() => console.log("settings")}
+          onPress={() => router.push("/(tabs)/home")}
         >
-          <Ionicons
-            name="settings-outline"
-            size={19}
-            color="#fff"
-            style={{ padding: 10 }}
-          />
+          <Feather name="home" size={19} color="#fff" style={{ padding: 10 }} />
         </Pressable>
       </View>
 
@@ -59,25 +55,26 @@ export default function Header() {
         style={{ width }}
         className="bg-white rounded-lg p-3 self-center flex-row justify-between"
       >
-        {/* langue source */}
+        {/* FROM */}
         <Pressable
           onPress={() => {
             setTarget("from");
             setVisible(true);
           }}
-          className="self-center flex-row items-center gap-1"
+          className="flex-row items-center gap-1"
         >
           <Text>{fromLang}</Text>
           <Ionicons name="chevron-up-outline" />
         </Pressable>
 
+        {/* SWITCH */}
         <Pressable
           onPress={() => {
             const temp = fromLang;
             setFromLang(toLang);
             setToLang(temp);
           }}
-          className="shadow-md bg-orange-100 rounded-full h-10 w-10 justify-center items-center "
+          className="bg-orange-100 rounded-full h-10 w-10 justify-center items-center"
         >
           <FontAwesome6
             name="arrow-right-arrow-left"
@@ -86,22 +83,20 @@ export default function Header() {
           />
         </Pressable>
 
+        {/* TO */}
         <Pressable
           onPress={() => {
             setTarget("to");
             setVisible(true);
           }}
-          className="self-center flex-row items-center gap-1 bg-[#ff8904] rounded-lg"
+          className="flex-row items-center gap-1 bg-[#ff8904] rounded-lg"
         >
           <Text className="text-white p-1.5">{toLang}</Text>
-          <Ionicons
-            name="chevron-up-outline"
-            color="#fff"
-            style={{ paddingRight: 3 }}
-          />
+          <Ionicons name="chevron-up-outline" color="#fff" />
         </Pressable>
       </View>
 
+      {/* MODAL */}
       <Modal visible={visible} transparent animationType="slide">
         <View className="flex-1 justify-end bg-black/40">
           <View className="bg-white p-4 rounded-t-xl max-h-[60%]">

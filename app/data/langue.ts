@@ -1,5 +1,6 @@
 export const langues = [
   'francais',
+  'anglais',
   'moore',
   'dioula',
   'fulfulde',
