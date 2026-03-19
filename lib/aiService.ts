@@ -1,4 +1,4 @@
-import Uri from "../hooks/uri";
+import Uri from "../app/hooks/uri";
 
 interface prompt {
   message: string;

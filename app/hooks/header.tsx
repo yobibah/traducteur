@@ -19,14 +19,17 @@ export default function Header({
   setToLang,
 }: any) {
   const width = Dimensions.get("screen").width * 0.9;
-
   const [visible, setVisible] = useState(false);
   const [target, setTarget] = useState("from");
 
   const selectLang = (lang: string) => {
     if (target === "from") {
+      // empêche fromLang === toLang
+      if (lang === toLang) setToLang(fromLang);
       setFromLang(lang);
     } else {
+      // empêche toLang === fromLang
+      if (lang === fromLang) setFromLang(toLang);
       setToLang(lang);
     }
     setVisible(false);
@@ -35,14 +38,28 @@ export default function Header({
   return (
     <View className="bg-[#e17100] h-[150px] rounded-b-xl">
       <View className="flex-row">
+        {/* LOGO */}
         <View className="flex-row p-2.5">
           <View className="bg-[#ff8904] justify-center rounded-md">
             <Text className="text-white font-bold text-xl p-1.5">T</Text>
           </View>
-
           <Text className="text-white font-bold text-xl p-1.5">Traducteur</Text>
         </View>
 
+        {/* BOUTON HISTORIQUE */}
+        <Pressable
+          className="bg-[#ff8904] justify-center rounded-full absolute right-14 top-2"
+          onPress={() => router.push("/(tabs)/historique")}
+        >
+          <Feather
+            name="clock"
+            size={19}
+            color="#fff"
+            style={{ padding: 10 }}
+          />
+        </Pressable>
+
+        {/* BOUTON HOME */}
         <Pressable
           className="bg-[#ff8904] justify-center rounded-full absolute right-1 top-2"
           onPress={() => router.push("/(tabs)/home")}
@@ -51,6 +68,7 @@ export default function Header({
         </Pressable>
       </View>
 
+      {/* SÉLECTEUR LANGUES */}
       <View
         style={{ width }}
         className="bg-white rounded-lg p-3 self-center flex-row justify-between"
@@ -96,7 +114,7 @@ export default function Header({
         </Pressable>
       </View>
 
-      {/* MODAL */}
+      {/* MODAL LANGUES */}
       <Modal visible={visible} transparent animationType="slide">
         <View className="flex-1 justify-end bg-black/40">
           <View className="bg-white p-4 rounded-t-xl max-h-[60%]">
