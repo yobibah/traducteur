@@ -141,6 +141,7 @@ const Home = () => {
 
           <TextInput
             placeholder="Mots ou phrase à traduire..."
+            placeholderTextColor="#999"
             multiline
             value={text}
             onChangeText={setText}

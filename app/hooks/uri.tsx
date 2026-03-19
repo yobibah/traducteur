@@ -1,6 +1,6 @@
 const Uri = () => {
-  const Ai_Token = "AIzaSyCj-7pWE5B72L4Mw8jaR-N-Q97RgMMAJZY";
-  const BASE_URL = "AIzaSyBGcBNthdGToZLZgcTZYnAhog-hdRGLmnM";
+  const Ai_Token = "";
+  const BASE_URL = "";
   return { Ai_Token, BASE_URL };
 };
 export default Uri;
